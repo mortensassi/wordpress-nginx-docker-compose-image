@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 
 # persistent dependencies
 RUN set -eux; \
@@ -31,7 +31,7 @@ RUN set -ex; \
 		mysqli \
 		zip \
 	; \
-	pecl install imagick-3.4.4; \
+	pecl install imagick-3.5.0; \
 	docker-php-ext-enable imagick; \
 	\
 # reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
@@ -75,8 +75,8 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/error-logging.ini
 
 
-ENV WORDPRESS_VERSION 5.5.1
-ENV WORDPRESS_SHA1 d3316a4ffff2a12cf92fde8bfdd1ff8691e41931
+ENV WORDPRESS_VERSION 5.8.2
+ENV WORDPRESS_SHA1 c3b1b59553eafbf301c83b14c5eeae4cf1c86044
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \
